@@ -34,7 +34,7 @@
 	<input type="text" name="rating"/> <br>
 	Special Features:
 	<input type="text" name="features"/> <br>
-	
+	<input type="submit" value="Submit">
 	</form>
 </body>
 </html>

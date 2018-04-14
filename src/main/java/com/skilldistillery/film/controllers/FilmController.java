@@ -50,10 +50,10 @@ public class FilmController {
 	@RequestMapping(path = "addfilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film, Errors errors) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/result.jsp");
+		mv.setViewName("WEB-INF/views/result.jsp");
 		mv.addObject("film", film);
 		if (errors.hasErrors()) {
-			mv.setViewName("WEB-INF/views/addFilm.jsp");
+			mv.setViewName("WEB-INF/views/home.jsp");
 		}
 		return mv;
 	}
