@@ -36,5 +36,11 @@
 	<input type="text" name="features"/> <br>
 	<input type="submit" value="Submit">
 	</form>
+	
+<h3>ENTER AN ID TO SEARCH FOR A FILM</h3>
+	<form action="result.do" method="GET">
+	<input type="text" name="ID">
+	<input type="submit" value="SEARCH">
+	</form>
 </body>
 </html>
