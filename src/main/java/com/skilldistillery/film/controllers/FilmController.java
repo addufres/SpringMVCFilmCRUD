@@ -26,18 +26,19 @@ public class FilmController {
 
 	// USER STORY 1 GET FILM INFO BY FILMID
 	@RequestMapping(path = "result.do", method = RequestMethod.GET)
-	public ModelAndView seeFilmInfo(int filmId) {
+	public ModelAndView seeFilmInfo(Integer filmId) {
 		Film film;
 		ModelAndView mv;
 		try {
+//			if(dao.getFilm)
 			film = dao.getFilmById(filmId);
-			mv = new ModelAndView("WEB-INF/result.jsp", "film", film);
+			mv = new ModelAndView("WEB-INF/views/result.jsp", "film", film);
 			return mv;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mv = new ModelAndView("WEB-INF/home.jsp");
+		mv = new ModelAndView("WEB-INF/views/fail.jsp");
 		return mv;
 	}
 
@@ -53,7 +54,7 @@ public class FilmController {
 		mv.setViewName("WEB-INF/views/result.jsp");
 		mv.addObject("film", film);
 		if (errors.hasErrors()) {
-			mv.setViewName("WEB-INF/views/home.jsp");
+			mv.setViewName("WEB-INF/views/fail.jsp");
 		}
 		return mv;
 	}
