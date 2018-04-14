@@ -17,6 +17,13 @@ public class FilmController {
 	@Autowired
 	private MVCFilmDAOImpl dao;
 
+	@RequestMapping(path = "home.do")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/views/home.jsp");
+		return mv;
+	}
+
 	// USER STORY 1 GET FILM INFO BY FILMID
 	@RequestMapping(path = "result.do", method = RequestMethod.GET)
 	public ModelAndView seeFilmInfo(int filmId) {
@@ -48,6 +55,6 @@ public class FilmController {
 		if (errors.hasErrors()) {
 			mv.setViewName("WEB-INF/views/addFilm.jsp");
 		}
-		return mv;		
+		return mv;
 	}
 }
