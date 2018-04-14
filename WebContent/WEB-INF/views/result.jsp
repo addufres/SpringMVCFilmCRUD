@@ -13,32 +13,28 @@
 <title>Results</title>
 </head>
 <body>
-
-
-    ${Film.id}<br>
-    ${Film.title}<br>
-    ${Film.description}<br>
-    ${Film.releaseYear}<br>
-    ${Film.languageId}<br>
-    ${Film.rentalDuration}<br>
-    ${Film.rentalRate}<br>
-    ${Film.length}<br>
-    ${Film.replacementCost}<br>
-    ${Film.rating}<br>
-    ${Film.specialFeatures}<br>
-
-
-	${Film.ID}
-	<br> ${Film.title}
-	<br> ${Film.description}
-	<br> ${Film.year}
-	<br> ${Film.languageID}
-	<br> ${Film.rentalduration}
-	<br> ${Film.rentalrate}
-	<br> ${Film.length}
-	<br> ${Film.cost}
-	<br> ${Film.rating}
-	<br>
+<h1>Here is the film</h1>
+<h3>ID</h3>
+	${film.id}<br>
+<h3>TITLE</h3>
+	${film.title}<br>
+<h3>DESCRIPTION</h3>
+	${film.description}<br>
+<h3>YEAR</h3>
+	${film.releaseYear}<br>
+<h3>LANGUAGE ID</h3>
+	${film.languageId}<br>
+<h3>RENTAL DURATION</h3>
+	${film.rentalDuration}<br>
+<h3>RENTAL RATE</h3>
+	${film.rentalRate}<br>
+<h3>LENGTH</h3>
+	${film.length}<br>
+<h3>REPLACEMENT COST</h3>
+	${film.replacementCost}<br>
+<h3>RATING</h3>
+	${film.rating}<br>
+	
 
 </body>
 </html>
