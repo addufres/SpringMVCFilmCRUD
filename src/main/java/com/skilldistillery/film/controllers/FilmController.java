@@ -1,6 +1,8 @@
 package com.skilldistillery.film.controllers;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,23 @@ public class FilmController {
 			film = dao.getFilmById(filmId);
 			mv = new ModelAndView();
 			mv.setViewName("WEB-INF/views/result.jsp");
+			mv.addObject("film", film);
+			return mv;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv = new ModelAndView("WEB-INF/views/fail.jsp");
+		return mv;
+	}
+	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+	public ModelAndView seeFilmInfoSearched(@RequestParam(name = "search") String s) {
+		List<Film> film = new ArrayList<>();
+		ModelAndView mv;
+		try {
+			film.addAll(dao.getFilmBySearch(s));
+			mv = new ModelAndView();
+			mv.setViewName("WEB-INF/views/resultMulti.jsp");
 			mv.addObject("film", film);
 			return mv;
 		} catch (SQLException e) {

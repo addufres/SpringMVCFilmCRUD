@@ -38,6 +38,11 @@
 	<input type="text" name="ID">
 	<input type="submit" value="SEARCH">
 	</form>
+<h3>ENTER TEXT TO SEARCH FOR A FILM</h3>
+	<form action="search.do" method="GET">
+	<input type="text" name="search">
+	<input type="submit" value="SEARCH">
+	</form>
 	
 	<h3>FILL OUT THIS FORM TO UPDATE A FILM</h3>
 	<form action="update.do" method="POST">
