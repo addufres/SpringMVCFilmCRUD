@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<h1>WELCOME TO 'LE THEATRE</h1>
+<br>
+<h3>FILL OUT THIS FORM TO ADD A FILM</h3>
 	<form action="addfilm.do" method="POST">
 	Film ID: 
 	<input type="text" name="ID"/> <br>
