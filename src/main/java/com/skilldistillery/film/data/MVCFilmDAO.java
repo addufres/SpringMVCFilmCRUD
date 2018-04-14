@@ -15,9 +15,9 @@ public interface MVCFilmDAO {
 	public List<Film> getFilmBySearch(String word) throws SQLException;
 
 	public String getLanguage(Film film);
-	
+	public Film updateFilm(Film film);
 	public Film addFilm(Film film);
-	public boolean deleteFilm(Film film);
+	public boolean deleteFilm(int id);
 
 	Actor getActorById(int actorId);
 

@@ -12,19 +12,17 @@
 <br>
 <h3>FILL OUT THIS FORM TO ADD A FILM</h3>
 	<form action="addfilm.do" method="POST">
-	Film ID: 
-	<input type="text" name="ID"/> <br>
 	Film Title: 
 	<input type="text" name="title"/> <br>
 	Film Description:
 	<input type="text" name="description"/> <br>
-	Release Year: 
+	(must be between 1900 - current year)Release Year: 
 	<input type="text" name="year"/> <br>
-	Language ID:
+	(1-5)Language ID:
 	<input type="text" name="languageID"/> <br>
 	Rental Duration:
 	<input type="text" name="rentalduration"/> <br>
-	Rental Rate:
+	(less than 50) Rental Rate:
 	<input type="text" name="rentalrate"/> <br>
 	Film Length: 
 	<input type="text" name="length"/> <br>
@@ -39,6 +37,31 @@
 	<form action="result.do" method="GET">
 	<input type="text" name="ID">
 	<input type="submit" value="SEARCH">
+	</form>
+	
+	<h3>FILL OUT THIS FORM TO UPDATE A FILM</h3>
+	<form action="update.do" method="POST">
+	ID for film to update:
+	<input type="text" name="id"/><br>
+	Updated Title: 
+	<input type="text" name="title"/> <br>
+	Updated Description:
+	<input type="text" name="description"/> <br>
+	(must be between 1900 - current year)Updated Release Year: 
+	<input type="text" name="year"/> <br>
+	(1-5)Updated Language ID:
+	<input type="text" name="languageID"/> <br>
+	Updated Rental Duration:
+	<input type="text" name="rentalduration"/> <br>
+	(less than 50) Updated Rental Rate:
+	<input type="text" name="rentalrate"/> <br>
+	Updated Film Length: 
+	<input type="text" name="length"/> <br>
+	Updated Replacement Cost:
+	<input type="text" name="cost"/> <br>
+	Updated Film Rating:
+	<input type="text" name="rating"/> <br>
+	<input type="submit" value="Submit"/>
 	</form>
 </body>
 </html>

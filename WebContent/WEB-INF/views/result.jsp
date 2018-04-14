@@ -14,6 +14,8 @@
 </head>
 <body>
 <h1>Here is the film</h1>
+
+<h2>If these fields are empty then no film was found</h2>
 <h3>ID</h3>
 	${film.id}<br>
 <h3>TITLE</h3>
@@ -35,6 +37,9 @@
 <h3>RATING</h3>
 	${film.rating}<br>
 	
-
+<a href="home.do">go home</a>
+<form action="delete.do" method="POST">
+<input type="text" name="filmId">
+<input type="submit" value="delete this film"></form>
 </body>
 </html>

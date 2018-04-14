@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Film {
 
-	private int id;
+	private Integer id;
 	private String title;
 	private String description;
 	private short releaseYear;
@@ -45,10 +45,9 @@ public class Film {
 		this.specialfeatures = specialfeatures;
 		this.cast = cast;
 	}
-	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialfeatures) {
+	public Film(String title, String description, short releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
@@ -58,14 +57,13 @@ public class Film {
 		this.length = length;
 		this.replacementCost = replacementCost;
 		this.rating = rating;
-		this.specialfeatures = specialfeatures;
 	}
 
 	public Film(String title) {
 		this.title = title;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
