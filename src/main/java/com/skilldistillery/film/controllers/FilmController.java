@@ -31,11 +31,10 @@ public class FilmController {
 		Film film;
 		ModelAndView mv;
 		try {
-//			if(dao.getFilm)
 			film = dao.getFilmById(filmId);
-			mv = new ModelAndView("WEB-INF/views/result.jsp");
+			mv = new ModelAndView();
+			mv.setViewName("WEB-INF/views/result.jsp");
 			mv.addObject("film", film);
-			System.out.println(film);
 			return mv;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

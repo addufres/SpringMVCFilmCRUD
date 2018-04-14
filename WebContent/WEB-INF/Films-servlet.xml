@@ -12,6 +12,6 @@
 	<mvc:annotation-driven />
       
      <bean id="data" class="com.skilldistillery.film.data.MVCFilmDAOImpl"></bean>
-     
+
      <bean id="film" class="com.skilldistillery.film.entities.Film"> </bean>
 </beans>

@@ -28,7 +28,6 @@ public class Film {
 	public Film() {
 		
 	}
-
 	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialfeatures,
 			List<Actor> cast) {
