@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.MVCFilmDAOImpl;
@@ -26,13 +27,15 @@ public class FilmController {
 
 	// USER STORY 1 GET FILM INFO BY FILMID
 	@RequestMapping(path = "result.do", method = RequestMethod.GET)
-	public ModelAndView seeFilmInfo(Integer filmId) {
+	public ModelAndView seeFilmInfo(@RequestParam( name = "ID") Integer filmId) {
 		Film film;
 		ModelAndView mv;
 		try {
 //			if(dao.getFilm)
 			film = dao.getFilmById(filmId);
-			mv = new ModelAndView("WEB-INF/views/result.jsp", "film", film);
+			mv = new ModelAndView("WEB-INF/views/result.jsp");
+			mv.addObject("film", film);
+			System.out.println(film);
 			return mv;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,6 +56,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/result.jsp");
 		mv.addObject("film", film);
+		System.out.println(film);
 		if (errors.hasErrors()) {
 			mv.setViewName("WEB-INF/views/fail.jsp");
 		}
