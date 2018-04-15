@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.film.entities.Actor;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 
 public class MVCFilmDAOImpl implements MVCFilmDAO {
@@ -57,8 +58,10 @@ public class MVCFilmDAOImpl implements MVCFilmDAO {
 				double replacementCost = rs.getDouble(9);
 				String rating = rs.getString(10);
 				String specialfeatures = rs.getString(11);
+				
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 						replacementCost, rating, specialfeatures, getActorsByFilmId(id));
+				film.setCategories(getFilmsCategoriesByFilmId(film.getId()));
 			}
 		}
 
@@ -128,41 +131,6 @@ public class MVCFilmDAOImpl implements MVCFilmDAO {
 	}
 
 	@Override
-	public List<Actor> getActorsByFilmId(int filmId) {
-		List<Actor> cast = new ArrayList<>();
-		try {
-			// SELECT first_name, id, title, description, release_year, language_id,
-			// rental_duration, rental_rate, length, replacement_cost, rating,
-			// special_features
-			// FROM film JOIN film_actor ON film.id = film_actor.film_id
-			// WHERE actor_id = 1;
-			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "select * from actor a join film_actor fa on fa.actor_id =a.id join film f on f.id = fa.film_id where f.id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, filmId);
-			ResultSet rs = stmt.executeQuery();
-
-			if (rs.next() == false && filmId != 0) {
-				return null;
-			} else {
-				while (rs.next()) {
-					int id = rs.getInt(1);
-					String firstName = rs.getString(2);
-					String lastName = rs.getString(3);
-					Actor actor = new Actor(id, firstName, lastName);
-					cast.add(actor);
-				}
-			}
-			rs.close();
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return cast;
-	}
-
-	@Override
 	public List<Film> getFilmBySearch(String word) throws SQLException {
 		List<Film> films = new ArrayList<>();
 		// CONNECT TO DATABASE
@@ -191,15 +159,45 @@ public class MVCFilmDAOImpl implements MVCFilmDAO {
 			String specialfeatures = rs.getString(11);
 			Film film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 					replacementCost, rating, specialfeatures, getActorsByFilmId(id));
+			film.setCast(getActorsByFilmId(film.getId()));
+			film.setCategories(getFilmsCategoriesByFilmId(film.getId()));
 			System.out.println(film);
 			films.add(film);
 		}
 
-		// CLOSE UTILITIES
 		rs.close();
 		stmt.close();
 		conn.close();
 		return films;
+	}
+	
+	
+	@Override
+	public List<Actor> getActorsByFilmId(int filmId) {
+		List<Actor> actors = new ArrayList<>();
+		String sql = "select a.first_name, a.last_name, a.id from film f join film_actor fa on f.id = "
+				+ "fa.film_id join actor a on a.id = fa.actor_id where f.id = ? limit 5";
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String fname = rs.getString(1);
+				String lname = rs.getString(2);
+				int id = rs.getInt(3);
+				Actor actor = new Actor(id, fname, lname);
+				actors.add(actor);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return actors;
 	}
 
 	@Override
@@ -275,6 +273,7 @@ public class MVCFilmDAOImpl implements MVCFilmDAO {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
+			
 			conn.commit(); // COMMIT TRANSACTION
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -316,6 +315,32 @@ public class MVCFilmDAOImpl implements MVCFilmDAO {
 			
 		}
 		return film;
+	}
+
+	@Override
+	public List<Category> getFilmsCategoriesByFilmId(int filmId) {
+		List<Category> categories = new ArrayList<>();
+		String sql = "select c.id, c.name FROM film f join film_category fc on f.id = fc.film_id join category c on c.id = fc.film_id where f.id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				Category Category = new Category(id, name);
+				categories.add(Category);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return categories;
 	}
 
 }

@@ -88,8 +88,14 @@ public class FilmController {
 	
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteFilm(RedirectAttributes redir, @RequestParam(name = "filmId") Integer fid) {
-		ModelAndView mv = new ModelAndView("WEB-INF/views/delete.jsp");
-		dao.deleteFilm(fid);
+		ModelAndView mv = new ModelAndView();
+		boolean b = dao.deleteFilm(fid);
+		if (b) {
+			mv.setViewName("WEB-INF/views/delete.jsp");
+		}
+		else {
+			mv.setViewName("WEB-INF/views/Fail.jsp");
+		}
 		return mv;
 	}
 	

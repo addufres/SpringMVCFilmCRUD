@@ -16,6 +16,20 @@ public class Film {
 	private String rating;
 	private String specialfeatures;
 	private List<Actor> cast;
+	private List<Category> categories;
+
+	
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public List<Actor> getCast() {
 		return cast;
@@ -24,10 +38,32 @@ public class Film {
 	public void setCast(List<Actor> cast) {
 		this.cast = cast;
 	}
-	
+
 	public Film() {
-		
+
 	}
+
+
+
+	public Film(Integer id, String title, String description, short releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialfeatures,
+			List<Actor> cast, List<Category> categories) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialfeatures = specialfeatures;
+		this.cast = cast;
+		this.categories = categories;
+	}
+
 	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialfeatures,
 			List<Actor> cast) {
@@ -45,6 +81,7 @@ public class Film {
 		this.specialfeatures = specialfeatures;
 		this.cast = cast;
 	}
+
 	public Film(String title, String description, short releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating) {
 		super();
@@ -156,7 +193,7 @@ public class Film {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialfeatures=" + specialfeatures + ", cast=" + cast + "]";
+				+ ", specialfeatures=" + specialfeatures + ", cast=" + cast + ", categories=" + categories + "]";
 	}
 
 	@Override
@@ -164,8 +201,9 @@ public class Film {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + languageId;
 		result = prime * result + length;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
@@ -195,12 +233,20 @@ public class Film {
 				return false;
 		} else if (!cast.equals(other.cast))
 			return false;
+		if (categories == null) {
+			if (other.categories != null)
+				return false;
+		} else if (!categories.equals(other.categories))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (languageId != other.languageId)
 			return false;
@@ -231,5 +277,7 @@ public class Film {
 			return false;
 		return true;
 	}
+
+
 
 }

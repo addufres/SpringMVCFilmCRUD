@@ -7,7 +7,7 @@
 <title>Delete</title>
 </head>
 <body>
-<h1>DELETED THE FILM</h1>
-<a href="home.do">go home</a>
+<h3>The film has been deleted.</h3>
+<a href="home.do">Return to Homepage</a>
 </body>
 </html>

@@ -7,12 +7,12 @@
 <title>FAIL</title>
 </head>
 <body>
-<h1>YOU FAILED</h1>
+<h3>You are not authorized to delete this film.</h3>
 <br>
 <br>
 <br>
 <form action="home.do" method="get">
-<input type="submit" value="go back home">
+<input type="submit" value="Return to Homepage">
 </form>
 </body>
 </html>
