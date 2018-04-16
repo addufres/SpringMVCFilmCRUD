@@ -119,5 +119,7 @@
 </select> <br>
 	<input type="submit" value="Submit"/>
 	</form>
+	
+	<a href="https://github.com/addufres/SpringMVCFilmCRUD/blob/master/README.md" target="_blank">Github README</a>
 </body>
 </html>
